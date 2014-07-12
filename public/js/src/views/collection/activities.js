@@ -1,6 +1,7 @@
 Application.View.Activities = Backbone.Marionette.CollectionView.extend({
     className: 'activities',
 
+    childView: Application.View.Activity,
 
     render: function () {
         var template = Handlebars.compile($('#activities-template').html());
