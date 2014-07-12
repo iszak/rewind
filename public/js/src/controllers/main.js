@@ -80,26 +80,26 @@ Application.Controller.Main = Marionette.Controller.extend({
             return Application.router.navigate("/login", true);
         }
 
-        var collection = new Application.Collection.Activities();
+        var location = this.options.location;
+
+        location.fetch();
+
+
         var model = new Application.Model.Activity();
 
-        collection.query = new Parse.Query(Application.Model.Activity);
+        var collection = new Application.Collection.Timline();
+            collection.query = new Parse.Query(Application.Model.Activity);
 
+        collection.query.include("location");
 
-        var promise = collection.fetch();
+        collection.fetch();
 
-        promise.then(function() {
-            var timelineView = new Application.View.Item.Timeline({
-                collection: collection,
-                model: model
-            });
-
-            Application.mainRegion.show(timelineView);
-
-
-        }, function(error) {
-            alert(error);
+        var timelineView = new Application.View.Item.Map({
+            collection : collection,
+            model      : model
         });
+
+        Application.mainRegion.show(timelineView);
 
     }
 });
