@@ -8,7 +8,8 @@ module.exports = {
         src: [
             'components/jquery/dist/jquery.js',
             'components/underscore/underscore.js',
-            'components/backbone/backbone.js'
+            'components/backbone/backbone.js',
+            'components/marionette/lib/backbone.marionette.js'
         ],
         dest: 'js/dist/lib.js'
     },
