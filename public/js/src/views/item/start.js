@@ -8,8 +8,12 @@ Application.View.Item.Start = Backbone.Marionette.ItemView.extend({
     },
 
 
+    /**
+     * redirect to timeline page
+     * @return {undefined}
+     */
     start: function(){
-
+    	return Application.router.navigate('/timeline', true);
     }
 
 });

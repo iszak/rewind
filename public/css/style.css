@@ -94,6 +94,7 @@ a {
   margin: 0 auto;
   text-indent: -9999px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .logo {
