@@ -1,24 +1,58 @@
 Application.Router.Default = Backbone.Marionette.AppRouter.extend({
     initialize: function() {
         var location = new Application.Model.Location();
+        var locations = new Application.Collection.Locations();
 
-        // location.watch(function() {
-        //     var user = Parse.User.current();
-        //     var locations = new Application.Collection.Locations();
 
-        //     var promise = locations.fetch();
+        function onError(error) {
+            alert(error);
+        }
 
-        //     promise.then(function(){
-        //         var activity = new Application.Model.Activity({
-        //             user: user.get('id'),
-        //             location: locations.at(0).get('id')
-        //         });
+        function onLocationsLoad() {
+            location.on("change", onLocationChange);
+            location.watch(5000);
+        }
 
-        //         activity.save();
-        //     }, function(error) {
-        //         alert(error);
+        function onLocationChange(userLocation) {
+            locations.updateUserLocation(userLocation);
+
+            var closestLocation = locations.closest(
+                100
+            );
+
+            console.log(closestLocation.toJSON());
+        }
+
+
+        locations.fetch().then(
+            _.bind(onLocationsLoad, this),
+            _.bind(onError, this)
+        );
+
+
+
+        // function onChange() {
+
+        // }
+
+        // this.listenTo(location, "change", onChange);
+
+        // var user = Parse.User.current();
+        // var locations = new Application.Collection.Locations();
+
+        // var promise = locations.fetch();
+
+        // promise.then(function(){
+        //     var activity = new Application.Model.Activity({
+        //         user: user.get("id"),
+        //         location: locations.at(0).get("id")
         //     });
+
+        //     activity.save();
+        // }, function(error) {
+        //     alert(error);
         // });
+
 
         var options = {
             location: location

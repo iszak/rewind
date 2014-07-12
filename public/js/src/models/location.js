@@ -7,6 +7,9 @@ Application.Model.Location = Parse.Object.extend({
     },
 
 
+    watchInterval: null,
+
+
     fetch: function(options) {
         var deferred = new jQuery.Deferred();
 
@@ -61,5 +64,18 @@ Application.Model.Location = Parse.Object.extend({
 
 
         return promise;
+    },
+
+
+    watch: function(interval) {
+        this.watchInterval = setInterval(
+            _.bind(this.fetch, this),
+            interval
+        );
+    },
+
+
+    unwatch: function() {
+        clearInterval(this.watchInterval);
     }
 });
