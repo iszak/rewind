@@ -46,6 +46,11 @@ Application.Controller.Main = Marionette.Controller.extend({
     },
 
 
+    /**
+     * Timeline
+     *
+     * @return {Undefined}
+     */
     timeline: function() {
         var collection = new Application.Collection.Activities();
         var model = new Application.Model.Activity();
