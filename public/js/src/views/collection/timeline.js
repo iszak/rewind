@@ -34,7 +34,6 @@ Application.View.Collection.Timeline = Backbone.Marionette.CompositeView.extend(
         } else if (type === "timeline") {
             Application.router.navigate("/timeline", true);
         }
-
     }
 
 });

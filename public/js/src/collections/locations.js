@@ -18,8 +18,14 @@ Application.Collection.Locations = Parse.Collection.extend({
         );
 
         this.forEach(function(location) {
-            var locationLatitude = location.get("location").latitude,
-                locationLongitude = location.get("location").longitude;
+            var point = location.get("location");
+
+            if (point === undefined) {
+                return;
+            }
+
+            var locationLatitude = point.latitude,
+                locationLongitude = point.longitude;
 
             var locationLatLng = new google.maps.LatLng(
                 locationLatitude,

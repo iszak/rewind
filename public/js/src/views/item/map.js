@@ -184,6 +184,6 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         );
 
         this.renderUser();
-        this.renderUser();
+        this.renderActivities();
     }
 });
