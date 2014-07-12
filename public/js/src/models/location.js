@@ -1,4 +1,6 @@
 Application.Model.Location = Parse.Object.extend({
+    className: "Location",
+
     defaults: {
         latitude  : null,
         longitude : null
