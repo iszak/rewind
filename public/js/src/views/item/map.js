@@ -50,10 +50,6 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
             return;
         }
 
-        console.log([
-                this.markers[markerLenth - 2].getPosition(),
-                this.markers[markerLenth - 1].getPosition()
-            ]);
 
         var path = new google.maps.Polyline({
             path: [
@@ -101,6 +97,8 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         }
 
         this.collection.forEach(this.renderActivity, this);
+
+        console.log(this.collection.length);
     },
 
 
