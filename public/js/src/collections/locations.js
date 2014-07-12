@@ -6,12 +6,12 @@ Application.Collection.Locations = Parse.Collection.extend({
     initialize: function(options) {
         if (options.location) {
             this.location = options.location;
-            this.location.on("change", _.bind(this.updateDistances, this));
+            this.location.on("change", _.bind(this.distanceUpdate, this));
         }
     },
 
 
-    updateDistances: function(location) {
+    distanceUpdate: function(location) {
         var userLatLng = new google.maps.LatLng(
             location.get("latitude"),
             location.get("longitude")
@@ -31,10 +31,10 @@ Application.Collection.Locations = Parse.Collection.extend({
               locationLatLng
             );
 
-            location.set("distance", distance, {silent: true});
+            location.set("distance", distance);
         });
 
-        this.trigger("change:distance", this);
+        this.trigger("distance:update", this);
     },
 
 

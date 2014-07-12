@@ -5,8 +5,6 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         }
 
         function onDistanceUpdate(locations) {
-            console.log("on distance update", locations);
-
             var closestLocation = locations.closest(
                 100
             );
@@ -34,8 +32,8 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         var user = Parse.User.current();
         var userLocation = new Application.Model.Location();
         userLocation.watch(
-            // 10s
-            1 * 1000
+            // 60s
+            60 * 1000
         );
 
 
@@ -45,11 +43,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
 
         locations.fetch();
 
-        this.listenTo(
-            locations,
-            "change:distance",
-            onDistanceUpdate
-        );
+        this.listenTo(locations, "distance:update", onDistanceUpdate);
 
 
         var options = {
