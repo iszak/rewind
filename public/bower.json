@@ -35,6 +35,7 @@
         "html5-boilerplate": "^4.3.0",
 
         "backbone": "^1.1.2",
+        "backbone-associations": "^0.6.2",
 
         "marionette":"^2.0.1",
 

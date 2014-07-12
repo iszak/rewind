@@ -29,7 +29,10 @@ Application.Controller.Main = Marionette.Controller.extend({
 
         collection.query = new Parse.Query(Application.Model.Activity);
 
-        collection.done(function() {
+
+        var promise = collection.fetch();
+
+        promise.then(function() {
             var mapView = new Application.View.Item.Map({
                 collection: collection,
                 location: location,
@@ -37,9 +40,7 @@ Application.Controller.Main = Marionette.Controller.extend({
             });
 
             Application.mainRegion.show(mapView);
-        });
-
-        collection.error(function(error) {
+        }, function(error) {
             alert(error);
         });
     },

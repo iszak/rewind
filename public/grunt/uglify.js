@@ -9,7 +9,8 @@ module.exports = {
             'components/jquery/dist/jquery.js',
             'components/underscore/underscore.js',
             'components/backbone/backbone.js',
-            'components/handlebars/handlebars.js'
+            'components/handlebars/handlebars.js',
+            'components/backbone-associations/backbone-associations.js'
         ],
         dest: 'js/dist/lib.js'
     },
