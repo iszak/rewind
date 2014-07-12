@@ -1,4 +1,4 @@
-Application.Model.Location = Backbone.Model.extend({
+Application.Model.Location = Parse.Object.extend({
     defaults: {
         latitude  : null,
         longitude : null

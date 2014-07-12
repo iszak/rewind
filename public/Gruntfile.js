@@ -25,7 +25,6 @@ module.exports = function(grunt) {
     grunt.registerTask('js', [
         'js:lib',
         'js:ext',
-        'js:polyfills',
         'js:app'
     ]);
 

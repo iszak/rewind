@@ -10,7 +10,6 @@ module.exports = {
             'components/underscore/underscore.js',
             'components/backbone/backbone.js',
             'components/handlebars/handlebars.js',
-            'components/backbone-associations/backbone-associations.js'
         ],
         dest: 'js/dist/lib.js'
     },
