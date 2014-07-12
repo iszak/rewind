@@ -76,7 +76,7 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         ];
 
         var mapOptions = {
-            zoom: 14,
+            zoom: 16,
             center: new google.maps.LatLng(
                 51.507222,
                 -0.1275
