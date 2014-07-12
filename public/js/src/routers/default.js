@@ -15,7 +15,12 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         }
 
 
+        var currentLocation = null;
         function onClosestLocation(closestLocation) {
+            if (closestLocation === currentLocation) {
+                return;
+            }
+
             var activity = new Application.Model.Activity({
                 user: user,
                 location: closestLocation
