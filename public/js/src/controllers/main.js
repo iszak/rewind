@@ -52,16 +52,16 @@ Application.Controller.Main = Marionette.Controller.extend({
 
         collection.query = new Parse.Query(Application.Model.Activity);
 
-        collection.done(function(){
-            var mapView = new Application.View.Item.Activities({
+        var promise = collection.fetch();
+
+        promise.then(function(){
+            var activitiesView = new Application.View.Collection.Activities({
                 collection: collection,
                 model: model
             });
 
-            Application.mainRegion.show(mapView);
-        });
-
-        collection.error(function(error) {
+            Application.mainRegion.show(activitiesView);
+        }, function(error) {
             alert(error);
         });
     }
