@@ -54,6 +54,8 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             new Application.Controller.Main(options),
             {
                 "": "index",
+                "login": "login",
+                "start":"start",
                 "map": "map",
                 "timeline": "timeline"
             }
