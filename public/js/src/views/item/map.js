@@ -1,19 +1,13 @@
 Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
     className: 'map',
 
-    initialize: function () {
-        this.render();
+    template: JST.map,
 
+    initialize: function () {
         this.on('show', this.renderMap);
         this.on('show', this.updateMap);
     },
 
-
-    render: function () {
-        var template = Handlebars.compile($('#map-template').html());
-
-        this.$el.html(template);
-    },
 
 
     updateMap: function() {

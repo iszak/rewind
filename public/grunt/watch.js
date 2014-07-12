@@ -70,6 +70,18 @@ module.exports = {
     },
 
 
+     // Application Templates
+    templateApp: {
+        files: [
+            'js/src/templates/*.html',
+            'js/src/templates/**/*.html'
+        ],
+        tasks: [
+            'jst:app'
+        ]
+    },
+
+
     config: {
         files: [
             'grunt/*.js'

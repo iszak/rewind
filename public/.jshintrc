@@ -30,6 +30,7 @@
         "Modernizr": true,
         "Parse": true,
         "Handlebars": true,
-        "google": true
+        "google": true,
+        "JST" : true
     }
 }

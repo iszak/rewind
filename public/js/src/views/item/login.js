@@ -1,6 +1,9 @@
 Application.View.Item.Login = Backbone.Marionette.ItemView.extend({
+    
+    template: JST.login,
+
     initialize: function(){
-        this.render();
+        //this.render();
     },
 
     events: {
@@ -8,11 +11,11 @@ Application.View.Item.Login = Backbone.Marionette.ItemView.extend({
     },
 
 
-    render: function(){
-        var template = Handlebars.compile( $('#login-template').html() );
+    // render: function(){
+    //     var template = Handlebars.compile( $('#login-template').html() );
 
-        this.$el.html( template );
-    },
+    //     this.$el.html( template );
+    // },
 
 
     login: function(event){
