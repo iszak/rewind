@@ -42,6 +42,31 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         });
 
         this.markers.push(marker);
+
+
+        var markerLenth = this.markers.length;
+        if (markerLenth === 1) {
+            console.log("return");
+            return;
+        }
+
+        console.log([
+                this.markers[markerLenth - 2].getPosition(),
+                this.markers[markerLenth - 1].getPosition()
+            ]);
+
+        var path = new google.maps.Polyline({
+            path: [
+                this.markers[markerLenth - 2].getPosition(),
+                this.markers[markerLenth - 1].getPosition()
+            ],
+            geodesic: true,
+            strokeColor: "#FFFFFF",
+            strokeOpacity: 0.8,
+            strokeWeight: 2
+        });
+
+        path.setMap(this.map);
     },
 
     onDomRefresh: function(){
