@@ -1,5 +1,4 @@
 Application.View.Login = Backbone.Marionette.ItemView.extend({
-
     initialize: function(){
         this.render();
     },
@@ -8,11 +7,13 @@ Application.View.Login = Backbone.Marionette.ItemView.extend({
         'click .login': 'login'
     },
 
+
     render: function(){
         var template = Handlebars.compile( $('#login-template').html() );
 
         this.$el.html( template );
     },
+
 
     login: function(event){
         event.preventDefault();
@@ -26,6 +27,4 @@ Application.View.Login = Backbone.Marionette.ItemView.extend({
             }
         });
     }
-
-
 });

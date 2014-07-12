@@ -8,9 +8,6 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
         this.on('show', this.updateMap);
     },
 
-    events: {
-    },
-
 
     render: function () {
         var template = Handlebars.compile($('#map-template').html());
@@ -37,12 +34,10 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
         });
 
         this.map.setCenter(latLng);
-
     },
 
 
     renderMap: function () {
-
         var mapOptions = {
             zoom: 8,
             center: new google.maps.LatLng(
@@ -57,6 +52,7 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
         );
     },
 
+
     onShow: function() {
         var location = this.options.location;
 
@@ -66,5 +62,4 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
             );
         }
     }
-
 });
