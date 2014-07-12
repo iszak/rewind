@@ -1,13 +1,12 @@
 Application.View.Map = Backbone.Marionette.ItemView.extend({
-    className: "map",
+    className: 'map',
 
-    initialize: function (options) {
+    initialize: function () {
         this.render();
 
         this.on('show', this.renderMap);
         this.on('show', this.updateMap);
         this.on('show', this.loadActivities);
-
     },
 
     events: {
@@ -15,25 +14,19 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
 
     mapEvents: function(map){
 
-      //console.log(this.options);
-      
-      var self = this;
-
       google.maps.event.addListener(map, 'click', function( event ){
 
           var latitude = event.latLng.lat();
           var longitude = event.latLng.lng();
 
-
-          window.location = "#/add-activity/" + latitude + "/" + longitude;
-
+          window.location = '#/add-activity/' + latitude + '/' + longitude;
 
       });
 
     },
 
     render: function () {
-        var template = Handlebars.compile($("#map-template").html());
+        var template = Handlebars.compile($('#map-template').html());
 
         this.$el.html(template);
 

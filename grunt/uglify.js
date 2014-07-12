@@ -9,7 +9,8 @@ module.exports = {
             'components/jquery/dist/jquery.js',
             'components/underscore/underscore.js',
             'components/backbone/backbone.js',
-            'components/marionette/lib/backbone.marionette.js'
+            'components/handlebars/handlebars.js'
+
         ],
         dest: 'js/dist/lib.js'
     },
@@ -20,7 +21,9 @@ module.exports = {
         options: {
             sourceMap: true
         },
-        src: [],
+        src: [
+            'components/marionette/lib/backbone.marionette.js'
+        ],
         dest: 'js/dist/ext.js'
     },
 

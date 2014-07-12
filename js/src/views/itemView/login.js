@@ -5,11 +5,11 @@ Application.View.Login = Backbone.Marionette.ItemView.extend({
     },
 
     events: {
-        "click .login": "login"
+        'click .login': 'login'
     },
 
     render: function(){
-        var template = Handlebars.compile( $("#login-template").html() );
+        var template = Handlebars.compile( $('#login-template').html() );
 
         this.$el.html( template );
     },
@@ -18,11 +18,11 @@ Application.View.Login = Backbone.Marionette.ItemView.extend({
         event.preventDefault();
 
         Parse.FacebookUtils.logIn('email', {
-            success: function(user) {
+            success: function() {
                window.location.hash = '/activities';
             },
-            error: function(user, error) {
-                alert("User cancelled the Facebook login or did not fully authorize.");
+            error: function() {
+                alert('User cancelled the Facebook login or did not fully authorize.');
             }
         });
     }

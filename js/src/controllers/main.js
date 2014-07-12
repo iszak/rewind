@@ -1,26 +1,27 @@
 Application.Controller.Main = Marionette.Controller.extend({
-    initialize: function() {
-        
-    },
-
-
-
+    
+    
+    /**
+     * index - checks if a user is logged in.
+     * if the aren't show login view, if they are show
+     * @return {undefined}
+     */
     index: function() {
         if (!Parse.User.current()) {
             var loginView = new Application.View.Login();
-
             Application.mainRegion.show(loginView);
         } else {
-            window.location.hash = '/activities';
+            window.location.hash = '/map';
         }
     },
 
 
-
-    activities: function() {
+    /**
+     * activities
+     * @return {undefined}
+     */
+    map: function() {
         var location = this.options.location;
-
-
         var collection = new Application.Collection.Activities();
         var model = new Application.Model.Activity();
         
@@ -36,32 +37,17 @@ Application.Controller.Main = Marionette.Controller.extend({
                         model: model
                     });
 
-
                     Application.mainRegion.show(mapView);
-                }
-                else {
+                } else {
                     window.location.hash = '';
                 }
 
             },
             error: function(error) {
-                alert("Error: " + error.code + " " + error.message);
+                console.log(error);
             }
         });
 
-
-
-
-    },
-
-    add: function(id) {
-        if (Parse.User.current()) {
-
-            var addActivity = new Application.View.Add();
-
-            Application.mainRegion.show(addActivity);
-        } else {
-            window.location.hash = '';
-        }
     }
+
 });

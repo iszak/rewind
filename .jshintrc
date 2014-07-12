@@ -27,6 +27,9 @@
         "Application": true,
         "Backbone": true,
         "Marionette": true,
-        "Modernizr": true
+        "Modernizr": true,
+        "Parse": true,
+        "Handlebars": true,
+        "google": true
     }
 }

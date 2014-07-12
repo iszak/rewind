@@ -1,4 +1,5 @@
 Application.Model.GeoLocation = Backbone.Model.extend({
+    
     defaults: {
         latitude  : null,
         longitude : null
@@ -12,7 +13,7 @@ Application.Model.GeoLocation = Backbone.Model.extend({
         var promise = deferred.promise();
 
         // Options
-        options || (options = {});
+        options = options || (options = {});
 
         // Callbacks
         if (options.success) {
@@ -35,7 +36,7 @@ Application.Model.GeoLocation = Backbone.Model.extend({
             var data = {
                 latitude: latitude,
                 longitude: longitude
-            }
+            };
 
             // Set the data to the model
             this.set(data);
