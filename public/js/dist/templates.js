@@ -34,7 +34,7 @@ this["JST"]["timeline"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += 'TIMELINE COLLECTION VIEW\n\n<div class="m-tabs">\n\t<a class="tab tab-map" data-type="map">MAP</a>\n\t<a class="tab tab-timeline" data-type="timeline">TIMELINE</a>\n</div>';
+__p += '<h1>TIMELINE</h1>\n<div id="timeline"></div>\n<div class="m-tabs">\n\t<a class="tab tab-map" data-type="map">MAP</a>\n\t<a class="tab tab-timeline" data-type="timeline">TIMELINE</a>\n</div>';
 
 }
 return __p
@@ -44,7 +44,8 @@ this["JST"]["timelineItem"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += 'item';
+__p += 'PLace: ' +
+((__t = ( location.name )) == null ? '' : __t);
 
 }
 return __p

@@ -58,7 +58,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         userLocation.fetch();
         activities.fetch();
 
-        // Watch user location
+        // Watch user locgation
         userLocation.watch(
             // 60s
             10 * 1000

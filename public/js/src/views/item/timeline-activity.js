@@ -6,19 +6,21 @@ Application.View.Item.TimelineActivity = Backbone.Marionette.ItemView.extend({
     initialize: function () {
         this.location = this.options.location;
 
-        console.log(this.model.attributes);
+        console.log(this.model);
+
+        // var parseObj = Parse.Object.extend("Location");
+
+        // new Parse.Query(parseObj)
+        //   .include("Location")
+        //   .find(function (data) {
+        //     //data.get("location").get("name");
+        //     console.log(data);
+        //   });
+        // console.log(this.model.attributes);
 
         //this.listenTo(this.collection, "sync", this.renderActivities);
 
         //this.listenTo(this.collection, "add", this.renderActivity);
-
-    },
-
-
-    renderActivity: function() {
-        //var location = activity.get("location");
-
-        //console.log(location);
     },
 
 
