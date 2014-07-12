@@ -38,12 +38,51 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
 
 
     renderMap: function () {
+
+        var styles = [
+          {
+            'elementType': 'geometry.fill',
+            'stylers': [
+              { 'saturation': -98 }
+            ]
+          },{
+            'featureType': 'road',
+            'stylers': [
+              { 'color': '#36393d' },
+              { 'visibility': 'simplified' }
+            ]
+          },{
+            'featureType': 'landscape',
+            'stylers': [
+              { 'color': '#3f4248' }
+            ]
+          },{
+            'elementType': 'labels',
+            'stylers': [
+              { 'visibility': 'off' }
+            ]
+          },{
+            'featureType': 'poi',
+            'stylers': [
+              { 'visibility': 'off' }
+            ]
+          },{
+            'featureType': 'transit.station',
+            'stylers': [
+              { 'visibility': 'off' }
+            ]
+          },{
+          }
+        ];
+
         var mapOptions = {
-            zoom: 8,
+            zoom: 14,
             center: new google.maps.LatLng(
                 51.507222,
                 -0.1275
-            )
+            ),
+            styles: styles,
+            disableDefaultUI: true
         };
 
         this.map = new google.maps.Map(
