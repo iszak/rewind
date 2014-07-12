@@ -25,7 +25,6 @@ Application.addInitializer(function() {
     Parse.FacebookUtils.init({
         appId      : '1436116333338502',
         channelUrl : 'http://digital-memory.parseapp.com/channel.html',
-        status     : true,
         cookie     : true,
         xfbml      : true
     });
