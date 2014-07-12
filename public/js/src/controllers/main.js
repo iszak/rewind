@@ -30,7 +30,6 @@ Application.Controller.Main = Marionette.Controller.extend({
 
         collection.fetch({
             success: function(collection) {
-
                 if (Parse.User.current()) {
                     var mapView = new Application.View.Map({
                         collection: collection,

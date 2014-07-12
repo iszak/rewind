@@ -1,5 +1,5 @@
-Application.Model.GeoLocation = Backbone.Model.extend({
-    
+Application.Model.Location = Backbone.Model.extend({
+
     defaults: {
         latitude  : null,
         longitude : null
@@ -48,7 +48,7 @@ Application.Model.GeoLocation = Backbone.Model.extend({
 
         function onError(error) {
             // Reject the promise
-            deferred.reject(error);            
+            deferred.reject(error);
         }
 
 

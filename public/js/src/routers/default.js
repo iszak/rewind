@@ -1,8 +1,7 @@
 Application.Router.Default = Backbone.Marionette.AppRouter.extend({
 
     initialize: function() {
-
-        var location = new Application.Model.GeoLocation();
+        var location = new Application.Model.Location();
 
         var options = {
             location: location
