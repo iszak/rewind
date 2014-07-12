@@ -6,30 +6,16 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
 
         this.on('show', this.renderMap);
         this.on('show', this.updateMap);
-        this.on('show', this.loadActivities);
     },
 
     events: {
     },
 
-    mapEvents: function(map){
-
-      google.maps.event.addListener(map, 'click', function( event ){
-
-          var latitude = event.latLng.lat();
-          var longitude = event.latLng.lng();
-
-          window.location = '#/add-activity/' + latitude + '/' + longitude;
-
-      });
-
-    },
 
     render: function () {
         var template = Handlebars.compile($('#map-template').html());
 
         this.$el.html(template);
-
     },
 
 
@@ -71,13 +57,6 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
         );
 
         this.mapEvents(this.map);
-
-    },
-
-    loadActivities: function(){
-        var activites = this.collection.toJSON();
-
-        console.log(activites);
 
     },
 
