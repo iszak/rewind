@@ -1,5 +1,4 @@
 Application.Router.Default = Backbone.Marionette.AppRouter.extend({
-
     initialize: function() {
         var location = new Application.Model.Location();
 
@@ -11,10 +10,9 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             new Application.Controller.Main(options),
             {
                 "": "index",
-                "map": "map"
+                "map": "map",
+                "timeline": "timeline"
             }
         );
-
     }
-
 });

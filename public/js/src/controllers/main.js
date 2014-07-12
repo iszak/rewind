@@ -23,31 +23,45 @@ Application.Controller.Main = Marionette.Controller.extend({
      */
     map: function() {
         var location = this.options.location;
+
         var collection = new Application.Collection.Activities();
         var model = new Application.Model.Activity();
 
         collection.query = new Parse.Query(Application.Model.Activity);
 
-        collection.fetch({
-            success: function(collection) {
-                if (Parse.User.current()) {
-                    var mapView = new Application.View.Item.Map({
-                        collection: collection,
-                        location: location,
-                        model: model
-                    });
+        collection.done(function() {
+            var mapView = new Application.View.Item.Map({
+                collection: collection,
+                location: location,
+                model: model
+            });
 
-                    Application.mainRegion.show(mapView);
-                } else {
-                    window.location.hash = '';
-                }
-
-            },
-            error: function(error) {
-                console.log(error);
-            }
+            Application.mainRegion.show(mapView);
         });
 
-    }
+        collection.error(function(error) {
+            alert(error);
+        });
+    },
 
+
+    timeline: function() {
+        var collection = new Application.Collection.Activities();
+        var model = new Application.Model.Activity();
+
+        collection.query = new Parse.Query(Application.Model.Activity);
+
+        collection.done(function(){
+            var mapView = new Application.View.Item.Activities({
+                collection: collection,
+                model: model
+            });
+
+            Application.mainRegion.show(mapView);
+        });
+
+        collection.error(function(error) {
+            alert(error);
+        });
+    }
 });
