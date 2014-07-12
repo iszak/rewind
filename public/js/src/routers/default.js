@@ -9,8 +9,8 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         var activities = new Application.Collection.Activities();
             activities.query = new Parse.Query(Application.Model.Activity);
 
-        activities.query.include("location");
-
+        activities.query.include(["location", "user"]);
+        activities.query.equalTo("user", user);
 
         // Load locations
         var locations = new Application.Collection.Locations({
@@ -22,25 +22,22 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             alert(error);
         }
 
+
+        var currentLocation = null;
         function onDistanceUpdate(locations) {
             var closestLocation = locations.closest(
                 100
             );
 
-            if (closestLocation) {
+            console.log("Closest location", closestLocation);
+
+            if (closestLocation !== currentLocation) {
                 onClosestLocation(closestLocation);
             }
         }
 
 
-        var currentLocation = null;
         function onClosestLocation(closestLocation) {
-            if (closestLocation === currentLocation) {
-                return;
-            } else {
-                currentLocation = closestLocation;
-            }
-
             var activity = new Application.Model.Activity();
 
             activity.set("user", user);
