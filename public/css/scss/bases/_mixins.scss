@@ -1,0 +1,25 @@
+
+// Adapted from http://jakearchibald.github.io/sass-ie/
+$mq-support: true !default;
+$mq-max-width: 1200px;
+
+@mixin respond-min($width) {
+
+	// Check for units on the width
+	@if unitless($width){
+		@warn "Assuming #{$width} to be in pixels, change to #{$width}px or another unit of measurement";
+		$width: $width * 1px;
+	}
+
+	@if $mq-support {
+		@media screen and (min-width: em($width)) {
+            @content;
+        }
+	} @else {
+
+		// Check media query applies
+		@if (em($width) <= em($mq-max-width)) {
+			@content;
+		}
+	}
+}
