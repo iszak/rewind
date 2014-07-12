@@ -24,7 +24,8 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
 
         var markers = [];
         this.collection.forEach(function(activity) {
-            var location = activity.get("location");
+            var location = activity.get("location"),
+                image = "img/venue.png";
 
             if (location === undefined) {
                 return;
@@ -38,7 +39,8 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: this.map,
-                title: location.get("name")
+                title: location.get("name"),
+                icon: image
             });
 
             markers.push(marker);
@@ -63,9 +65,12 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
 
 
         if (this.marker === undefined) {
+            var image = "img/man.png";
+
             this.marker = new google.maps.Marker({
                 map: this.map,
-                title: "Your Location"
+                title: "Your Location",
+                icon: image
             });
         }
 
