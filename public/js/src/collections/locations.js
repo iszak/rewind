@@ -47,6 +47,10 @@ Application.Collection.Locations = Parse.Collection.extend({
             return location.get("distance") < threshold;
         });
 
-        return closest[0];
+        if (closest.length > 0) {
+            return closest[0];
+        } else {
+            return null;
+        }
     }
 });
