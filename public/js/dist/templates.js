@@ -19,3 +19,13 @@ __p += '<div id="map-canvas" style="width: 100%; height: 100%"></div>';
 }
 return __p
 };
+
+this["JST"]["start"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += 'hello';
+
+}
+return __p
+};

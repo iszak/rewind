@@ -8,13 +8,31 @@ Application.Controller.Main = Marionette.Controller.extend({
      */
     index: function() {
         if (!Parse.User.current()) {
-            var loginView = new Application.View.Item.Login();
-            Application.mainRegion.show(loginView);
+            Application.router.navigate('/login', true);
         } else {
-            window.location.hash = '/map';
+            Application.router.navigate('/start', true);
         }
     },
 
+
+    /**
+     * show login view
+     * @return {[type]} [description]
+     */
+    login: function() {
+        var loginView = new Application.View.Item.Login();
+        Application.mainRegion.show(loginView);
+    },
+
+
+    /**
+     * show start view
+     * @return {[type]} [description]
+     */
+    start: function(){
+        var startView = new Application.View.Item.Start();
+        Application.mainRegion.show(startView);
+    },
 
     /**
      * Activities

@@ -29,6 +29,8 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             {
                 "": "index",
                 "map": "map",
+                "login":"login",
+                "start": "start",
                 "timeline": "timeline"
             }
         );
