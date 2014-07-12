@@ -12,10 +12,10 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             new Application.Controller.Main(options),
             {
                 "": "index",
-                "map": "map"
+                "activities": "activities"
             }
         );
-    
+
     }
 
 });

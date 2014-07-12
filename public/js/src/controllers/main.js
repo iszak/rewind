@@ -1,6 +1,6 @@
 Application.Controller.Main = Marionette.Controller.extend({
-    
-    
+
+
     /**
      * index - checks if a user is logged in.
      * if the aren't show login view, if they are show
@@ -17,19 +17,20 @@ Application.Controller.Main = Marionette.Controller.extend({
 
 
     /**
-     * activities
+     * Activities
+     *
      * @return {undefined}
      */
-    map: function() {
+    activities: function() {
         var location = this.options.location;
         var collection = new Application.Collection.Activities();
         var model = new Application.Model.Activity();
-        
+
         collection.query = new Parse.Query(Application.Model.Activity);
 
         collection.fetch({
             success: function(collection) {
-                
+
                 if (Parse.User.current()) {
                     var mapView = new Application.View.Map({
                         collection: collection,
