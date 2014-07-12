@@ -1,4 +1,4 @@
-Application.View.Map = Backbone.Marionette.ItemView.extend({
+Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
     className: 'map',
 
     initialize: function () {

@@ -8,7 +8,7 @@ Application.Controller.Main = Marionette.Controller.extend({
      */
     index: function() {
         if (!Parse.User.current()) {
-            var loginView = new Application.View.Login();
+            var loginView = new Application.View.Item.Login();
             Application.mainRegion.show(loginView);
         } else {
             window.location.hash = '/map';
@@ -31,7 +31,7 @@ Application.Controller.Main = Marionette.Controller.extend({
         collection.fetch({
             success: function(collection) {
                 if (Parse.User.current()) {
-                    var mapView = new Application.View.Map({
+                    var mapView = new Application.View.Item.Map({
                         collection: collection,
                         location: location,
                         model: model

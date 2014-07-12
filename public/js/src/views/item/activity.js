@@ -1,4 +1,4 @@
-Application.View.Activity = Backbone.Marionette.ItemView.extend({
+Application.View.Item.Activity = Backbone.Marionette.ItemView.extend({
     className: 'activity',
 
 

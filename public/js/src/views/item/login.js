@@ -1,4 +1,4 @@
-Application.View.Login = Backbone.Marionette.ItemView.extend({
+Application.View.Item.Login = Backbone.Marionette.ItemView.extend({
     initialize: function(){
         this.render();
     },

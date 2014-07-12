@@ -35,6 +35,7 @@ module.exports = {
         src: [
             'js/src/app.js',
             'js/src/*.js',
+            'js/src/views/item/*.js',
             'js/src/**/*.js'
         ],
         dest: 'js/dist/app.js'
