@@ -18,7 +18,7 @@ html, body {
    ========================================================================== */
 
 @import "layouts/container";
-@import "layouts/main"; 
+@import "layouts/main";
 
 /* =============================================================================
     Module Styles Includes
@@ -28,4 +28,5 @@ html, body {
 @import "modules/map";
 
 // UI Elements
+@import "modules/logo";
 @import "modules/btn";
