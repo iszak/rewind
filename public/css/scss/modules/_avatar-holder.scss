@@ -1,0 +1,14 @@
+.avatar-holder {
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+	border: 1px solid $color-white;
+	margin: 0 auto;
+
+	.avatar {
+		display: block;
+		width: 40px;
+		height: auto;
+		margin: 8px auto 0;
+	}
+}

@@ -34,7 +34,7 @@ this["JST"]["timeline"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<h1>TIMELINE</h1>\n<div id="timeline"></div>\n<div class="m-tabs">\n\t<a class="tab tab-map" data-type="map">MAP</a>\n\t<a class="tab tab-timeline" data-type="timeline">TIMELINE</a>\n</div>';
+__p += '<div id="timeline">\n\t<span class="time">18:30</span>\n\n\t<div class="avatar-holder">\n\t\t<img src="img/logo-retina.png" class="avatar" />\n\t</div>\n\n\t<ul class="times">\n\t\t<li class="moment">\n\t\t\t<div class="location"></div>\n\t\t</li>\n\t</ul>\n</div>\n<div class="m-tabs">\n\t<a class="tab tab-map" data-type="map">MAP</a>\n\t<a class="tab tab-timeline" data-type="timeline">TIMELINE</a>\n</div>';
 
 }
 return __p
