@@ -1,5 +1,23 @@
 Application.Router.Default = Backbone.Marionette.AppRouter.extend({
     initialize: function() {
+        // Load user and user location
+        var user = Parse.User.current();
+        var userLocation = new Application.Model.Location();
+
+
+        // Load activities
+        var activities = new Application.Collection.Activities();
+            activities.query = new Parse.Query(Application.Model.Activity);
+
+        activities.query.include("location");
+
+
+        // Load locations
+        var locations = new Application.Collection.Locations({
+            location: userLocation
+        });
+
+
         function onError(error) {
             alert(error);
         }
@@ -23,10 +41,10 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
                 currentLocation = closestLocation;
             }
 
-            var activity = new Application.Model.Activity({
-                user: user,
-                location: closestLocation
-            });
+            var activity = new Application.Model.Activity();
+
+            activity.set("user", user);
+            activity.set("location", closestLocation);
 
             activity.save().then(onActivitySave, onError);
         }
@@ -37,30 +55,17 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         }
 
 
-        var user = Parse.User.current();
-        var userLocation = new Application.Model.Location();
+        this.listenTo(locations, "distance:update", onDistanceUpdate);
 
+        // Fetch data
+        locations.fetch();
+        userLocation.fetch();
+
+        // Watch user location
         userLocation.watch(
             // 60s
             10 * 1000
         );
-
-
-        var activities = new Application.Collection.Activities();
-            activities.query = new Parse.Query(Application.Model.Activity);
-
-        activities.query.include("location");
-
-
-        var locations = new Application.Collection.Locations({
-            location: userLocation
-        });
-
-        userLocation.fetch();
-        locations.fetch();
-
-        this.listenTo(locations, "distance:update", onDistanceUpdate);
-
 
         var options = {
             location: userLocation,
