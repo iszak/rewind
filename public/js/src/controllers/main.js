@@ -11,7 +11,7 @@ Application.Controller.Main = Marionette.Controller.extend({
             var loginView = new Application.View.Login();
             Application.mainRegion.show(loginView);
         } else {
-            window.location.hash = '/map';
+            window.location.hash = '/activities';
         }
     },
 
@@ -21,7 +21,7 @@ Application.Controller.Main = Marionette.Controller.extend({
      *
      * @return {undefined}
      */
-    activities: function() {
+    map: function() {
         var location = this.options.location;
         var collection = new Application.Collection.Activities();
         var model = new Application.Model.Activity();

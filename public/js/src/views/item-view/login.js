@@ -19,7 +19,7 @@ Application.View.Login = Backbone.Marionette.ItemView.extend({
 
         Parse.FacebookUtils.logIn('email', {
             success: function() {
-               window.location.hash = '/activities';
+               window.location.hash = '/map';
             },
             error: function() {
                 alert('User cancelled the Facebook login or did not fully authorize.');
