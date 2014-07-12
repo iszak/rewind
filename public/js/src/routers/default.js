@@ -19,6 +19,8 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         function onClosestLocation(closestLocation) {
             if (closestLocation === currentLocation) {
                 return;
+            } else {
+                currentLocation = closestLocation;
             }
 
             var activity = new Application.Model.Activity({
@@ -29,8 +31,9 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             activity.save().then(onActivitySave, onError);
         }
 
-        function onActivitySave() {
+        function onActivitySave(activity) {
             console.log("Activity saved");
+            activities.add(activity);
         }
 
 
@@ -43,17 +46,26 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         );
 
 
+        var activities = new Application.Collection.Activities();
+            activities.query = new Parse.Query(Application.Model.Activity);
+
+        activities.query.include("location");
+
+
         var locations = new Application.Collection.Locations({
             location: userLocation
         });
 
+        location.fetch();
         locations.fetch();
 
         this.listenTo(locations, "distance:update", onDistanceUpdate);
 
 
         var options = {
-            location: userLocation
+            location: userLocation,
+            locations: locations,
+            activities: activities
         };
 
 

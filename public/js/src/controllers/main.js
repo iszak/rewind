@@ -50,23 +50,17 @@ Application.Controller.Main = Marionette.Controller.extend({
             return Application.router.navigate("/login", true);
         }
 
-        var location = this.options.location;
+        var location = this.options.location,
+            activities = this.options.activities;
 
-        location.fetch();
+        activities.fetch();
 
 
         var model = new Application.Model.Activity();
 
-        var collection = new Application.Collection.Activities();
-            collection.query = new Parse.Query(Application.Model.Activity);
-
-        collection.query.include("location");
-
-        collection.fetch();
-
 
         var mapView = new Application.View.Item.Map({
-            collection : collection,
+            collection : activities,
             location   : location,
             model      : model
         });
@@ -105,7 +99,7 @@ Application.Controller.Main = Marionette.Controller.extend({
 
         }, function(error) {
             alert(error);
-        });    
+        });
 
     }
 });
