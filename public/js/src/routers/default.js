@@ -1,26 +1,21 @@
 Application.Router.Default = Backbone.Marionette.AppRouter.extend({
     initialize: function() {
-        var location = new Application.Model.Location();
         var locations = new Application.Collection.Locations();
 
+
+        var userLocation = new Application.Model.Location();
 
         function onError(error) {
             alert(error);
         }
 
         function onLocationsLoad() {
-            location.on("change", onLocationChange);
-            location.watch(5000);
+            userLocation.on("change", onLocationChange);
+            userLocation.watch(5000);
         }
 
-        function onLocationChange(userLocation) {
+        function onLocationChange() {
             locations.updateUserLocation(userLocation);
-
-            var closestLocation = locations.closest(
-                100
-            );
-
-            console.log(closestLocation.toJSON());
         }
 
 
@@ -63,8 +58,6 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             {
                 "": "index",
                 "map": "map",
-                "login":"login",
-                "start": "start",
                 "timeline": "timeline"
             }
         );
