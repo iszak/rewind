@@ -18,8 +18,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         });
 
 
-        function onError(error) {
-            alert(error);
+        function onError() {
         }
 
 
