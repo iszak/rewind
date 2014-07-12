@@ -1,27 +1,36 @@
 Application.View.Item.TimelineActivity = Backbone.Marionette.ItemView.extend({
-    className: 'timeline-activity',
+    className: "timeline-activity",
 
-    template: JST.timeline
+    template: JST.timeline,
 
-    // initialize: function () {
-    //     this.location = this.options.location;
+    initialize: function (activity) {
+        this.location = this.options.location;
 
-    //     this.listenTo(this.collection, "sync", this.renderActivities);
+        console.log(activity);
 
-    // },
+        this.listenTo(this.collection, "sync", this.renderActivities);
 
-    // renderActivities: function() {
-    //     if (this.collection.length === 0) {
-    //         return;
-    //     }
+        this.listenTo(this.collection, "add", this.renderActivity);
 
-    //     this.collection.forEach(function(activity) {
-    //         //var location = activity.get("location");
+    },
 
-    //         if (location === undefined) {
-    //             return;
-    //         }
 
-    //     }, this);
-    // },
+    renderActivity: function(activity) {
+        var location = activity.get("location");
+
+        console.log(location);
+    },
+
+
+    renderActivities: function() {
+        if (this.map === undefined) {
+            return;
+        }
+
+        if (this.collection.length === 0) {
+            return;
+        }
+
+        this.collection.forEach(this.renderActivity, this);
+    }
 });
