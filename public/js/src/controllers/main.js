@@ -30,6 +30,11 @@ Application.Controller.Main = Marionette.Controller.extend({
      * @return {[type]} [description]
      */
     start: function(){
+        
+        if (!Parse.User.current()) {
+            return Application.router.navigate('/login', true);
+        }
+
         var startView = new Application.View.Item.Start();
         Application.mainRegion.show(startView);
     },
@@ -40,6 +45,11 @@ Application.Controller.Main = Marionette.Controller.extend({
      * @return {undefined}
      */
     map: function() {
+
+        if (!Parse.User.current()) {
+            return Application.router.navigate('/login', true);
+        }
+
         var location = this.options.location;
 
         var collection = new Application.Collection.Activities();
@@ -70,6 +80,11 @@ Application.Controller.Main = Marionette.Controller.extend({
      * @return {Undefined}
      */
     timeline: function() {
+
+        if (!Parse.User.current()) {
+            return Application.router.navigate('/login', true);
+        }
+        
         var collection = new Application.Collection.Activities();
         var model = new Application.Model.Activity();
 
