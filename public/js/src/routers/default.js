@@ -17,8 +17,8 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
 
         function onClosestLocation(closestLocation) {
             var activity = new Application.Model.Activity({
-                user: user.get("id"),
-                location: closestLocation.get("id")
+                user: user,
+                location: closestLocation
             });
 
             activity.save().then(onActivitySave, onError);
@@ -31,6 +31,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
 
         var user = Parse.User.current();
         var userLocation = new Application.Model.Location();
+
         userLocation.watch(
             // 60s
             60 * 1000
@@ -50,14 +51,15 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             location: userLocation
         };
 
+
         this.processAppRoutes(
             new Application.Controller.Main(options),
             {
-                "": "index",
-                "login": "login",
-                "start":"start",
-                "map": "map",
-                "timeline": "timeline"
+                ""         : "index",
+                "login"    : "login",
+                "start"    : "start",
+                "map"      : "map",
+                "timeline" : "timeline"
             }
         );
     }

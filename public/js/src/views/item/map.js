@@ -1,69 +1,112 @@
 Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
-    className: 'map',
+    className: "map",
 
     template: JST.map,
 
     initialize: function () {
-        this.on('show', this.renderMap);
-        this.on('show', this.updateMap);
+        this.location = this.options.location;
+
+        this.listenTo(this.location, "change", this.renderUser);
+        this.listenTo(this.collection, "sync", this.renderActivities);
+
+        this.on("show", this.renderMap);
     },
 
 
+    renderActivities: function() {
+        if (this.map === undefined) {
+            return;
+        }
 
-    updateMap: function() {
-        if (this.options.location.get('latitude') === null) {
+        if (this.collection.length === 0) {
+            return;
+        }
+
+        var markers = [];
+        this.collection.forEach(function(activity) {
+            var location = activity.get("location");
+
+            if (location === undefined) {
+                return;
+            }
+
+            var latLng = new google.maps.LatLng(
+                location.get("location").latitude,
+                location.get("location").longitude
+            );
+
+            var marker = new google.maps.Marker({
+                position: latLng,
+                map: this.map,
+                title: location.get("name")
+            });
+
+            markers.push(marker);
+        }, this);
+    },
+
+
+    renderUser: function() {
+        if (this.map === undefined) {
+            return;
+        }
+
+        if (this.location.get("latitude") === null) {
             return;
         }
 
 
         var latLng = new google.maps.LatLng(
-            this.options.location.get('latitude'),
-            this.options.location.get('longitude')
+            this.location.get("latitude"),
+            this.location.get("longitude")
         );
 
-        this.marker = new google.maps.Marker({
-            position: latLng,
-            map: this.map,
-            title: 'Hello World!'
-        });
+
+        if (this.marker === undefined) {
+            this.marker = new google.maps.Marker({
+                map: this.map,
+                title: "Your Location"
+            });
+        }
+
+        this.marker.setPosition(latLng);
 
         this.map.setCenter(latLng);
     },
 
 
     renderMap: function () {
-
         var styles = [
           {
-            'elementType': 'geometry.fill',
-            'stylers': [
-              { 'saturation': -98 }
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "saturation": -98 }
             ]
           },{
-            'featureType': 'road',
-            'stylers': [
-              { 'color': '#36393d' },
-              { 'visibility': 'simplified' }
+            "featureType": "road",
+            "stylers": [
+              { "color": "#36393d" },
+              { "visibility": "simplified" }
             ]
           },{
-            'featureType': 'landscape',
-            'stylers': [
-              { 'color': '#3f4248' }
+            "featureType": "landscape",
+            "stylers": [
+              { "color": "#3f4248" }
             ]
           },{
-            'elementType': 'labels',
-            'stylers': [
-              { 'visibility': 'off' }
+            "elementType": "labels",
+            "stylers": [
+              { "visibility": "off" }
             ]
           },{
-            'featureType': 'poi',
-            'stylers': [
-              { 'visibility': 'off' }
+            "featureType": "poi",
+            "stylers": [
+              { "visibility": "off" }
             ]
           },{
-            'featureType': 'transit.station',
-            'stylers': [
-              { 'visibility': 'off' }
+            "featureType": "transit.station",
+            "stylers": [
+              { "visibility": "off" }
             ]
           },{
           }
@@ -80,19 +123,11 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         };
 
         this.map = new google.maps.Map(
-            this.$el.find('#map-canvas').get(0),
+            this.$el.find("#map-canvas").get(0),
             mapOptions
         );
-    },
 
-
-    onShow: function() {
-        var location = this.options.location;
-
-        if (location.get('latitude') === null) {
-            location.fetch().done(
-                _.bind(this.updateMap, this)
-            );
-        }
+        this.renderUser();
+        this.renderUser();
     }
 });
