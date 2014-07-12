@@ -55,9 +55,6 @@ Application.View.Map = Backbone.Marionette.ItemView.extend({
             this.$el.find('#map-canvas').get(0),
             mapOptions
         );
-
-        this.mapEvents(this.map);
-
     },
 
     onShow: function() {
