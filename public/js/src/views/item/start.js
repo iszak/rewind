@@ -1,12 +1,15 @@
 Application.View.Item.Start = Backbone.Marionette.ItemView.extend({
     
     template: JST.start,
-
-    initialize: function(){
-
-    },
+    className: 'mainbg m-start',
 
     events: {
+    	'click #start' : 'start'
+    },
+
+
+    start: function(){
+
     }
 
 });

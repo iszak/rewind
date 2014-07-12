@@ -1,6 +1,7 @@
 Application.View.Item.Login = Backbone.Marionette.ItemView.extend({
     
     template: JST.login,
+    className: 'mainbg',
 
     initialize: function(){
         //this.render();
@@ -23,10 +24,10 @@ Application.View.Item.Login = Backbone.Marionette.ItemView.extend({
 
         Parse.FacebookUtils.logIn('email', {
             success: function() {
-               window.location.hash = '/map';
+               window.location.hash = '/start';
             },
             error: function() {
-                alert('User cancelled the Facebook login or did not fully authorize.');
+                console.log('error');
             }
         });
     }

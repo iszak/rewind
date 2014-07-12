@@ -1,0 +1,33 @@
+.m-start{
+
+	height:100%;
+
+	.logo{
+		width:40px;
+		height:auto;
+		margin:0 auto 0px;
+		display: block;
+		padding-top:15%;
+	}
+
+	.title{
+		font-size:30px;
+	}
+
+	.copy{
+		padding:10px 50px 20px;
+		text-align: center;
+	}
+
+	.start-button{
+		width:100px;
+		height:100px;
+		background: transparent url('../img/start.png') no-repeat 0 0;
+		background-size:100%;
+		display: block;
+		margin:0 auto;
+		text-indent:-9999px;
+		overflow: hidden;
+	}
+
+}

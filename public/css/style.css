@@ -47,6 +47,11 @@ a {
 #main {
   width: 100%;
   height: 100%;
+}
+
+.mainbg {
+  width: 100%;
+  height: 100%;
   background: url(../img/home-bg.jpg) repeat-x left top;
   background-size: cover;
 }
@@ -61,6 +66,34 @@ a {
 .map {
   width: 100%;
   height: 100%;
+}
+
+.m-start {
+  height: 100%;
+}
+.m-start .logo {
+  width: 40px;
+  height: auto;
+  margin: 0 auto 0px;
+  display: block;
+  padding-top: 15%;
+}
+.m-start .title {
+  font-size: 30px;
+}
+.m-start .copy {
+  padding: 10px 50px 20px;
+  text-align: center;
+}
+.m-start .start-button {
+  width: 100px;
+  height: 100px;
+  background: transparent url("../img/start.png") no-repeat 0 0;
+  background-size: 100%;
+  display: block;
+  margin: 0 auto;
+  text-indent: -9999px;
+  overflow: hidden;
 }
 
 .logo {
