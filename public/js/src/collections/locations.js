@@ -3,42 +3,38 @@ Application.Collection.Locations = Parse.Collection.extend({
     model: Application.Model.Location,
 
 
-    updateUserLocation: function(userLocation) {
-        this.updateUserLatLng(userLocation);
-        this.calculateDistances();
+    initialize: function(options) {
+        if (options.location) {
+            this.location = options.location;
+            this.location.on("change", _.bind(this.updateDistances, this));
+        }
     },
 
 
-    updateUserLatLng: function(userLocation) {
-        this.userLatLng = new google.maps.LatLng(
-            userLocation.get("latitude"),
-            userLocation.get("longitude")
-        );
-    },
-
-
-    calculateDistances: function() {
-      this.forEach(this.calculateDistance, this);
-    },
-
-
-    calculateDistance: function(location) {
-        var userLatLng = this.userLatLng;
-
-        var locationLatitude = location.get("location").latitude,
-            locationLongitude = location.get("location").longitude;
-
-        var locationLatLng = new google.maps.LatLng(
-            locationLatitude,
-            locationLongitude
+    updateDistances: function(location) {
+        var userLatLng = new google.maps.LatLng(
+            location.get("latitude"),
+            location.get("longitude")
         );
 
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(
-          userLatLng,
-          locationLatLng
-        );
+        this.forEach(function(location) {
+            var locationLatitude = location.get("location").latitude,
+                locationLongitude = location.get("location").longitude;
 
-        location.set("distance", distance);
+            var locationLatLng = new google.maps.LatLng(
+                locationLatitude,
+                locationLongitude
+            );
+
+            var distance = google.maps.geometry.spherical.computeDistanceBetween(
+              userLatLng,
+              locationLatLng
+            );
+
+            location.set("distance", distance, {silent: true});
+        });
+
+        this.trigger("change:distance", this);
     },
 
 

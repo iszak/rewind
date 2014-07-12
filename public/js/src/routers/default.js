@@ -1,27 +1,11 @@
 Application.Router.Default = Backbone.Marionette.AppRouter.extend({
     initialize: function() {
-        var locations = new Application.Collection.Locations();
-
-
-        var user = Parse.User.current();
-        var userLocation = new Application.Model.Location();
-
         function onError(error) {
             alert(error);
         }
 
-        function onLocationsLoad(locations) {
-            userLocation.on("change", function(userLocation){
-                onLocationChange(userLocation, locations);
-            });
-            userLocation.watch(
-                // 10s
-                10 * 1000
-            );
-        }
-
-        function onLocationChange(userLocation, locations) {
-            locations.updateUserLocation(userLocation);
+        function onDistanceUpdate(locations) {
+            console.log("on distance update", locations);
 
             var closestLocation = locations.closest(
                 100
@@ -31,6 +15,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
                 onClosestLocation(closestLocation);
             }
         }
+
 
         function onClosestLocation(closestLocation) {
             var activity = new Application.Model.Activity({
@@ -46,22 +31,35 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         }
 
 
-        locations.fetch().then(
-            _.bind(onLocationsLoad, this),
-            _.bind(onError, this)
+        var user = Parse.User.current();
+        var userLocation = new Application.Model.Location();
+        userLocation.watch(
+            // 10s
+            1 * 1000
+        );
+
+
+        var locations = new Application.Collection.Locations({
+            location: userLocation
+        });
+
+        locations.fetch();
+
+        this.listenTo(
+            locations,
+            "change:distance",
+            onDistanceUpdate
         );
 
 
         var options = {
-            location: location
+            location: userLocation
         };
 
         this.processAppRoutes(
             new Application.Controller.Main(options),
             {
                 "": "index",
-                "login":"login",
-                "start": "start",
                 "map": "map",
                 "timeline": "timeline"
             }
