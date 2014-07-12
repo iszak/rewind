@@ -53,8 +53,6 @@ Application.Controller.Main = Marionette.Controller.extend({
         var location = this.options.location,
             activities = this.options.activities;
 
-        activities.fetch();
-
 
         var model = new Application.Model.Activity();
 
@@ -80,12 +78,19 @@ Application.Controller.Main = Marionette.Controller.extend({
             return Application.router.navigate("/login", true);
         }
 
-        // var location = this.options.location,
-        //     activities = this.options.activities;
+        var location = this.options.location,
+            activities = this.options.activities;
 
-       // activities.fetch();
 
-        var timelineView = new Application.View.Collection.Timeline();
+        var model = new Application.Model.Activity();
+
+
+        var timelineView = new Application.View.Collection.Timeline({
+            collection : activities,
+            location   : location,
+            model      : model
+        });
+
 
         Application.mainRegion.show(timelineView);
 
