@@ -1,0 +1,26 @@
+.m-tabs{
+	background: #ffffff;
+	position: fixed;
+	bottom:0;
+	width:100%;
+	height:54px;
+	padding:2px;
+	@include box-sizing(border-box);
+
+	.tab-map, .tab-timeline{
+		width:50%;
+		height:50px;
+		border:0;
+		display: block;
+		background: #ffffff;
+		text-align:center;
+		color:#000;
+		float:left;
+		line-height:3;
+	}
+
+	.active{
+		background: #00ffd2;
+	}
+
+}

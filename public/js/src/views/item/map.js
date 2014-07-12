@@ -5,6 +5,10 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
 
     markers: [],
 
+    events: {
+        "click .tab" : "toggleTab"
+    },
+
     initialize: function () {
         this.location = this.options.location;
 
@@ -38,6 +42,27 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         });
 
         this.markers.push(marker);
+    },
+
+    onDomRefresh: function(){
+        $(".tab-map").addClass("active");
+    },
+
+
+    toggleTab: function(evt){
+
+        var type = $(evt.currentTarget).data("type");
+
+        $(".tab").removeClass("active");
+
+        $(evt.currentTarget).addClass("active");
+
+        if (type === "map") {
+            Application.router.navigate("/map", true);
+        } else if (type === "timeline") {
+            Application.router.navigate("/timeline", true);
+        }
+
     },
 
 

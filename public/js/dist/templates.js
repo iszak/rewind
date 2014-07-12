@@ -14,7 +14,7 @@ this["JST"]["map"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="map-canvas" style="width: 100%; height: 100%"></div>';
+__p += '<div id="map-canvas"></div>\n<div class="m-tabs">\n\t<a class="tab tab-map" data-type="map">MAP</a>\n\t<a class="tab tab-timeline" data-type="timeline">TIMELINE</a>\n</div>';
 
 }
 return __p
@@ -34,7 +34,7 @@ this["JST"]["timeline"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += 'timeline';
+__p += 'timeline\n\n<div id="map-canvas"></div>\n<div class="m-tabs">\n\t<a class="tab tab-map" data-type="map">MAP</a>\n\t<a class="tab tab-timeline" data-type="timeline">TIMELINE</a>\n</div>';
 
 }
 return __p
