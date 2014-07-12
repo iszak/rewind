@@ -29,3 +29,13 @@ __p += '<img src="img/logo-retina.png" class="logo" />\n<h1 class="title">Rewind
 }
 return __p
 };
+
+this["JST"]["timeline"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += 'timeline';
+
+}
+return __p
+};

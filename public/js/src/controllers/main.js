@@ -91,17 +91,21 @@ Application.Controller.Main = Marionette.Controller.extend({
 
         collection.query = new Parse.Query(Application.Model.Activity);
 
+
         var promise = collection.fetch();
 
-        promise.then(function(){
-            var activitiesView = new Application.View.Collection.Activities({
+        promise.then(function() {
+            var timelineView = new Application.View.Item.Timeline({
                 collection: collection,
                 model: model
             });
 
-            Application.mainRegion.show(activitiesView);
+            Application.mainRegion.show(timelineView);
+
+
         }, function(error) {
             alert(error);
-        });
+        });    
+
     }
 });
