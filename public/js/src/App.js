@@ -23,8 +23,8 @@ Application.addInitializer(function() {
     Parse.initialize('tQwka3iy4tadatRg4ZPMmWwiR6W5ChAoMTfSkQbS', 'vPBf8a9VEX4FU4yRz2tsvYhlTnvj8hAuFIhmwZfr');
 
     Parse.FacebookUtils.init({
-        appId      : '1436116333338502',
-        channelUrl : 'http://digital-memory.parseapp.com/channel.html',
+        appId      : '1436222829994519',
+        channelUrl : 'http://digital-memory.app.dev/channel.html',
         cookie     : true,
         xfbml      : true
     });
