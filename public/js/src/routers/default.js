@@ -30,9 +30,13 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
 
             console.log("Closest location", closestLocation);
 
-            if (closestLocation !== currentLocation) {
-                onClosestLocation(closestLocation);
+            if (closestLocation === currentLocation) {
+                return;
             }
+
+            currentLocation = closestLocation;
+
+            onClosestLocation(closestLocation);
         }
 
 
@@ -61,7 +65,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         // Watch user locgation
         userLocation.watch(
             // 60s
-            10 * 1000
+            30 * 1000
         );
 
         var options = {
