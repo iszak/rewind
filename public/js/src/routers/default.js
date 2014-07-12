@@ -42,7 +42,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
 
         userLocation.watch(
             // 60s
-            60 * 1000
+            10 * 1000
         );
 
 
@@ -56,7 +56,7 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             location: userLocation
         });
 
-        location.fetch();
+        userLocation.fetch();
         locations.fetch();
 
         this.listenTo(locations, "distance:update", onDistanceUpdate);
