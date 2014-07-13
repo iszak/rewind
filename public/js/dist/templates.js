@@ -42,11 +42,25 @@ return __p
 
 this["JST"]["timelineItem"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<div class="location">' +
 ((__t = ( location.name )) == null ? '' : __t) +
-'</div>';
+'</div>\n';
+
+	var mydate = new Date(location.createdAt);
+	var curr_date = mydate.getDate();
+	var curr_month = mydate.getMonth();
+	var curr_year = mydate.getFullYear();
+ 	var h = mydate.getHours();
+    var m = mydate.getMinutes();
+    var s = mydate.getSeconds();
+;
+__p += '\n\n' +
+((__t = ( curr_date + '/' + curr_month + '/' + curr_year )) == null ? '' : __t) +
+' -\n' +
+((__t = ( h + ':' + m )) == null ? '' : __t);
 
 }
 return __p
