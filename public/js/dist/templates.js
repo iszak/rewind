@@ -44,15 +44,9 @@ this["JST"]["timelineItem"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-<<<<<<< HEAD
-__p += '<li class="moment">\n    <div class="location">' +
-((__t = ( location.name )) == null ? '' : __t) +
-'</div>\n</li>';
-=======
 __p += '<div class="location">' +
 ((__t = ( location.name )) == null ? '' : __t) +
 '</div>';
->>>>>>> Edited timeline templates and styles
 
 }
 return __p
