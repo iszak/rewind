@@ -28,6 +28,11 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
                 100
             );
 
+            if (closestLocation === null) {
+                return;
+            }
+
+
             console.log("Closest location", closestLocation);
 
             if (closestLocation === currentLocation) {

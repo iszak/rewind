@@ -12,6 +12,7 @@ Application.View = {
 Application.Collection = {};
 Application.Router     = {};
 Application.Model      = {};
+Application.Service    = {};
 
 Application.Controller = {};
 
