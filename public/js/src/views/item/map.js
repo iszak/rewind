@@ -18,6 +18,8 @@ Application.View.Item.Map = Backbone.Marionette.ItemView.extend({
         this.listenTo(this.collection, "add", this.renderActivity);
 
         this.on("show", this.renderMap);
+
+        $(".tab-map").addClass("active");
     },
 
 

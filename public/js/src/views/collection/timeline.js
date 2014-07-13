@@ -12,7 +12,6 @@ Application.View.Collection.Timeline = Backbone.Marionette.CompositeView.extend(
 
     
     initialize:function(){
-        console.log("BITCH!");
     },
 
 
