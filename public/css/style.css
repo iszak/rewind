@@ -135,7 +135,7 @@ a {
 
 #timeline {
   padding-top: 10%;
-  background: url(../img/home-bg.jpg) repeat-x left center;
+  background: url(../img/timeline-bg.jpg) repeat-x left center #0e0f14;
   height: 90%;
 }
 
