@@ -57,10 +57,11 @@ __p += '<div class="location">' +
     var m = mydate.getMinutes();
     var s = mydate.getSeconds();
 ;
-__p += '\n\n' +
+__p += '\n\n<span class="activity-time">' +
 ((__t = ( curr_date + '/' + curr_month + '/' + curr_year )) == null ? '' : __t) +
 ' -\n' +
-((__t = ( h + ':' + m )) == null ? '' : __t);
+((__t = ( h + ':' + m )) == null ? '' : __t) +
+'</span>\n\n<span class="photos">\n\t<img src="img/photo-icon.png" class="photo" />\n</span>';
 
 }
 return __p

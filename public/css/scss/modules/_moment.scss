@@ -1,5 +1,5 @@
 .moment{
-	width: 100%;
+    width: 100%;
     margin-bottom: 50px;
     display: block;
     text-align: center;
@@ -9,17 +9,35 @@
 }
 
 .location {
-	position: absolute;
-	top: -35px;
-	left: 50%;
-	margin-left: -35px;
-    width: 70px;
-    height: 60px;
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    margin-left: -40px;
+    width: 60px;
+    height: 65px;
     border-radius: 50%;
     background-color: $color-white;
     color: black;
-    padding-top: 10px;
+    padding: 15px 10px 0 10px;
     text-transform: uppercase;
-    @include adjust-font-size-to(14px);
+    @include adjust-font-size-to(13px);
     line-height: 16px;
+}
+
+.activity-time {
+    float: left;
+    margin-left: 5%;
+    margin-top: 20%;
+}
+
+.photos {
+    display: block;
+    float: right;
+    margin-right: 5%;
+    margin-top: 10%;
+
+    .photo {
+        width: 58px;
+        height: 58px;
+    }
 }
