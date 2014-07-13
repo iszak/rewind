@@ -16,7 +16,25 @@ Application.View.Collection.Timeline = Backbone.Marionette.CompositeView.extend(
 
 
     onDomRefresh: function(){
+        var self = this;
+        
         $(".tab-timeline").addClass("active");
+        $(".time").text( this.calculateCurrentTime() );
+
+        setInterval(function(){
+            $(".time").text( self.calculateCurrentTime() );
+        }, 1000);
+    },
+
+
+    /**
+     * calculates the current time
+     * @return {string} time
+     */
+    calculateCurrentTime: function(){
+        var dt = new Date();
+        var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+        return time;
     },
 
 
