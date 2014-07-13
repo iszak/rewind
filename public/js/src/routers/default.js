@@ -18,28 +18,49 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
         });
 
 
-        function onError() {
-        }
+
+        var lastLocation = null;
+
+        // Wait for 5 (2 x sync), (3 x fetch)
+        var count = 0;
+        function onLoad() {
+            // Hack for jQuery.when() not working with parse
+            if (++count < 5) {
+                return;
+            }
+
+            // Set default
+            if (lastLocation == null) {
+                var lastActivity = activities.at(0);
+
+                if (lastActivity) {
+                    lastLocation = lastActivity.get("location");
+                } else {
+                    lastLocation = null;
+                }
+            }
 
 
-        var currentLocation = null;
-        function onDistanceUpdate(locations) {
+
             var closestLocation = locations.closest(
                 100
             );
 
-            if (closestLocation === null) {
+            if (closestLocation == null) {
                 return;
             }
 
-
-            console.log("Closest location", closestLocation);
-
-            if (closestLocation === currentLocation) {
-                return;
+            if (lastLocation) {
+                // Same closest location
+                if (closestLocation.get("name") ===
+                    lastLocation.get("name")) {
+                    return;
+                }
             }
 
-            currentLocation = closestLocation;
+            lastLocation = closestLocation;
+
+
 
             onClosestLocation(closestLocation);
         }
@@ -51,21 +72,22 @@ Application.Router.Default = Backbone.Marionette.AppRouter.extend({
             activity.set("user", user);
             activity.set("location", closestLocation);
 
-            activity.save().then(onActivitySave, onError);
+            activity.save().then(onActivitySave);
         }
 
         function onActivitySave(activity) {
-            console.log("Activity saved");
             activities.add(activity);
         }
 
 
-        this.listenTo(locations, "distance:update", onDistanceUpdate);
+        // Hack for Facebook batch load
+        userLocation.fetch().then(onLoad);
+        locations.fetch().then(onLoad);
+        activities.fetch().then(onLoad);
+        activities.on("sync", onLoad);
 
-        // Fetch data
-        locations.fetch();
-        userLocation.fetch();
-        activities.fetch();
+
+        userLocation.on("change", onLoad);
 
         // Watch user locgation
         userLocation.watch(

@@ -5,21 +5,31 @@ Application.Collection.Locations = Parse.Collection.extend({
 
     initialize: function(options) {
         if (options.location) {
+            console.log(options.location);
             this.location = options.location;
-            this.location.on("change", _.bind(this.distanceUpdate, this));
         }
     },
 
 
-    distanceUpdate: function(location) {
+
+    /**
+     * Get closest
+     *
+     * @param  {Integer} threshold
+     * @return {Application.Model.Location}
+     */
+    closest: function(threshold) {
         var userLatLng = new google.maps.LatLng(
-            location.get("latitude"),
-            location.get("longitude")
+            this.location.get("latitude"),
+            this.location.get("longitude")
         );
 
+
+        var closestLocation = null;
         this.forEach(function(location) {
             var point = location.get("location");
 
+            // Should never happen
             if (point === undefined) {
                 return;
             }
@@ -38,21 +48,24 @@ Application.Collection.Locations = Parse.Collection.extend({
             );
 
             location.set("distance", distance);
+
+
+            // Not within threshold
+            if (distance > threshold) {
+                return;
+            }
+
+            // No existing closest
+            if (closestLocation === null) {
+                closestLocation = location;
+            }
+
+            // Closest
+            if (distance < closestLocation.get("distance")) {
+                closestLocation = location;
+            }
         });
 
-        this.trigger("distance:update", this);
-    },
-
-
-    closest: function(threshold) {
-        var closest = this.filter(function(location) {
-            return location.get("distance") < threshold;
-        });
-
-        if (closest.length > 0) {
-            return closest[0];
-        } else {
-            return null;
-        }
+        return closestLocation;
     }
 });
