@@ -1,5 +1,7 @@
 Application.View.Item.TimelineActivity = Backbone.Marionette.ItemView.extend({
-    className: "timeline-activity",
+    className: "timeline-activity moment",
+
+    tagName: "li",
 
     template: JST.timelineItem,
 

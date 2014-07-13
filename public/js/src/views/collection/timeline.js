@@ -3,14 +3,14 @@ Application.View.Collection.Timeline = Backbone.Marionette.CompositeView.extend(
     template: JST.timeline,
 
     childView: Application.View.Item.TimelineActivity,
-    childViewContainer: "#timeline",
+    childViewContainer: ".times",
     className: "timeline-container",
 
     events: {
         "click .tab" : "toggleTab"
     },
 
-    
+
     initialize:function(){
     },
 
