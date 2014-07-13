@@ -5,6 +5,10 @@ Application.View.Item.TimelineActivity = Backbone.Marionette.ItemView.extend({
 
     template: JST.timelineItem,
 
+    initialize: function(){
+        console.log(this.model);
+    },
+
 
     renderActivities: function() {
         if (this.map === undefined) {

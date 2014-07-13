@@ -49,7 +49,7 @@ __p += '<div class="location">' +
 ((__t = ( location.name )) == null ? '' : __t) +
 '</div>\n';
 
-	var mydate = new Date(location.createdAt);
+	var mydate = new Date(createdAt);
 	var curr_date = mydate.getDate();
 	var curr_month = mydate.getMonth();
 	var curr_year = mydate.getFullYear();
